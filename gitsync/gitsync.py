@@ -46,6 +46,7 @@ def synchronize_repository(repository: Repository, directory: str) -> None:
         git.clone()
         git.pull()
         print("")
+        return None
 
 if __name__ == "__main__":
     try:
