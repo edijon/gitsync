@@ -25,3 +25,10 @@
     ```bash
     python3 gitsync.py edijon /tmp/ --provider=github 
     ```
+
+## Testing
+
+* You can use `pytest`
+    ```bash
+    pytest
+    ```
