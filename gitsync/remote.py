@@ -11,16 +11,15 @@ class Remote(object):
     def __init__(self):
         raise NotImplementedError
 
-    @property
-    def repositories(self) -> list:
-        raise NotImplementedError
-
     @staticmethod
     def remote(remote_type: RemoteProvider, access_token: str, base_url: str, port: int):
         if remote_type == RemoteProvider.GITHUB:
             return Github(access_token, base_url, port)
         else:
             raise NotImplementedError
+
+    def get_user_repositories(self, user: str) -> list:
+        raise NotImplementedError
 
 
 class Github(Remote):
