@@ -1,5 +1,7 @@
 # gitsync
 
+![ci_workflow](https://github.com/edijon/gitsync/actions/workflows/python-app.yml/badge.svg)
+
 * Allows to synchronize remote `git` repositories locally.
 * Aims to be a python training to me.
 * Currently works for Github user repositories only. 
