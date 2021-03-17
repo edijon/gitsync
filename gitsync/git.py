@@ -4,9 +4,9 @@ import subprocess
 
 class Git(object):
     @staticmethod
-    def controller(url: str, name: str, path: str="") -> object:
+    def controller(url: str, name: str, path: str = "") -> object:
         if os.name == "posix":
-            return GitPosix(url, name, path = path)
+            return GitPosix(url, name, path=path)
         else:
             raise NotImplementedError
 
@@ -19,11 +19,11 @@ class Git(object):
 
 class GitPosix(Git):
     def __init__(
-        self,
-        url: str,
-        name: str,
-        path: str = os.path.dirname(os.path.realpath(__file__))
-        ):
+            self,
+            url: str,
+            name: str,
+            path: str = os.path.dirname(os.path.realpath(__file__))
+            ):
         self.url = url
         self.name = name
         self.path = path

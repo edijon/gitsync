@@ -40,6 +40,7 @@ def get_remote_provider(remote_provider: str) -> RemoteProvider:
     else:
         raise NotImplementedError
 
+
 def synchronize_repository(repository: Repository, directory: str) -> None:
     print("Synchronize repository at URL : %s" % (repository.uri))
     git = Git.controller(repository.uri, repository.name, path=directory)
