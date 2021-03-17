@@ -13,7 +13,7 @@
 
 - Get dependencies
     ```bash
-    pip install --requirement requirements.txt
+    pip install .
     ```
 
 ## Usage
