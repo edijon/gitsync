@@ -21,7 +21,7 @@ class HttpClient(object):
 
     def get(self, endpoint: str = "", params: dict = {}) -> object:
         url = self.url + endpoint
-        response = requests.get(url, params = params)
+        response = requests.get(url, params=params)
         return HttpResponse(response)
 
 
@@ -37,14 +37,13 @@ class HttpResponse(object):
     def json(self) -> object:
         try:
             decode = self.response.json()
-        except JSONDecodeError as e:
+        except JSONDecodeError:
             decode = {}
         finally:
             return decode
-        
+
     def is_status_ok(self) -> bool:
         if self.response.status_code == HttpStatus.OK.value:
             return True
         else:
             return False
-

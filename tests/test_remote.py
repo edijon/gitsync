@@ -2,15 +2,19 @@ from gitsync.remote import Remote, RemoteProvider, Github
 from gitsync.httpwrapper import HttpClient
 from gitsync.repository import Repository
 
+
 def get_remote():
     return Remote.remote(RemoteProvider.GITHUB, "", "https://api.github.com", 443)
+
 
 def get_user():
     return "edijon"
 
+
 def test_remote_factory():
     remote = get_remote()
     assert isinstance(remote, Github)
+
 
 def test_init():
     remote = get_remote()
@@ -18,6 +22,7 @@ def test_init():
     assert isinstance(remote.base_url, str)
     assert isinstance(remote.port, int)
     assert isinstance(remote.session, HttpClient)
+
 
 def test_get_user_repositories():
     remote = get_remote()

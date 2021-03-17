@@ -25,12 +25,12 @@ def main() -> None:
 
 def get_arguments() -> object:
     parser = argparse.ArgumentParser(description='Synchronize user remote git repositories locally.')
-    parser.add_argument("user", type = str, help = "remote user namespace")
-    parser.add_argument("directory", type = str, help = "base directory where syncing repositories")
-    parser.add_argument("--provider", help = "example: github")
-    parser.add_argument("--token", help = "remote access token")
-    parser.add_argument("--api-url", help = "example: https://api.github.com", default = "https://api.github.com")
-    parser.add_argument("--api-port", help = "example: 443", default = 443)
+    parser.add_argument("user", type=str, help="remote user namespace")
+    parser.add_argument("directory", type=str, help="base directory where syncing repositories")
+    parser.add_argument("--provider", help="example: github")
+    parser.add_argument("--token", help="remote access token")
+    parser.add_argument("--api-url", help="example: https://api.github.com", default="https://api.github.com")
+    parser.add_argument("--api-port", help="example: 443", default=443)
     return parser.parse_args()
 
 
@@ -40,13 +40,14 @@ def get_remote_provider(remote_provider: str) -> RemoteProvider:
     else:
         raise NotImplementedError
 
-def synchronize_repository(repository: Repository, directory: str) -> None:   
-        print("Synchronize repository at URL : %s" % (repository.uri))
-        git = Git.controller(repository.uri, repository.name, path = directory)
-        git.clone()
-        git.pull()
-        print("")
-        return None
+def synchronize_repository(repository: Repository, directory: str) -> None:
+    print("Synchronize repository at URL : %s" % (repository.uri))
+    git = Git.controller(repository.uri, repository.name, path=directory)
+    git.clone()
+    git.pull()
+    print("")
+    return None
+
 
 if __name__ == "__main__":
     try:
