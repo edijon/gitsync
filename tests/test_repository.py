@@ -1,6 +1,4 @@
-import sys
-sys.path.append("../gitsync")
-from repository import Repository
+from gitsync.repository import Repository
 
 def get_repository():
     return Repository("name", "uri")

@@ -1,5 +1,5 @@
-from repository import Repository
-from httpwrapper import HttpClient, HttpStatus, HttpResponse
+from .repository import Repository
+from .httpwrapper import HttpClient, HttpStatus, HttpResponse
 from enum import Enum, auto
 
 

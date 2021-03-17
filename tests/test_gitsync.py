@@ -1,6 +1,5 @@
 import sys
-sys.path.append("../gitsync")
-import gitsync
+from gitsync import gitsync
 import pytest
 
 def test_main_successful():

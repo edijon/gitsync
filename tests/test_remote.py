@@ -1,8 +1,6 @@
-import sys
-sys.path.append("../gitsync")
-from remote import Remote, RemoteProvider, Github
-from httpwrapper import HttpClient
-from repository import Repository
+from gitsync.remote import Remote, RemoteProvider, Github
+from gitsync.httpwrapper import HttpClient
+from gitsync.repository import Repository
 
 def get_remote():
     return Remote.remote(RemoteProvider.GITHUB, "", "https://api.github.com", 443)

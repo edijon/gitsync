@@ -1,6 +1,4 @@
-import sys
-sys.path.append("../gitsync")
-from httpwrapper import HttpStatus, HttpClient, HttpResponse
+from gitsync.httpwrapper import HttpStatus, HttpClient, HttpResponse
 import requests
 
 def test_http_status():

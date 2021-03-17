@@ -1,8 +1,8 @@
 import argparse
 import sys
-from remote import Remote, RemoteProvider
-from repository import Repository
-from git import Git
+from .remote import Remote, RemoteProvider
+from .repository import Repository
+from .git import Git
 
 
 def main() -> None:

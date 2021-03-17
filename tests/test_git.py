@@ -1,6 +1,4 @@
-import sys
-sys.path.append("../gitsync")
-from git import Git, GitPosix
+from gitsync.git import Git, GitPosix
 
 def get_git():
     return Git.controller("https://github.com/edijon/gitsync.git", "gitsync", "/tmp")
