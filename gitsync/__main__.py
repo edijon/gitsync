@@ -1,3 +1,4 @@
+import sys
 from gitsync import gitsync
 
 if __name__ == "__main__":
