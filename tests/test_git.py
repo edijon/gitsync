@@ -2,11 +2,13 @@ from gitsync.git import Git, GitPosix
 import pytest
 import os
 
+
 def test_git():
     with pytest.raises(NotImplementedError):
         os.name = "none"
-        git = get_git()
+        get_git()
     os.name = "posix"
+
 
 def get_git():
     return Git.controller("https://github.com/edijon/gitsync.git", "gitsync", "/tmp")

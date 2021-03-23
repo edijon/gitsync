@@ -8,9 +8,6 @@ class RemoteProvider(Enum):
 
 
 class Remote(object):
-    def __init__(self):
-        raise NotImplementedError
-
     @staticmethod
     def remote(remote_type: RemoteProvider, access_token: str, base_url: str, port: int):
         if remote_type == RemoteProvider.GITHUB:

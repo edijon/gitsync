@@ -33,3 +33,15 @@ def test_http_response():
     assert response.is_status_ok()
     assert response.length > 0
     assert isinstance(response.json, dict)
+
+
+def test_http_response_error():
+    client = HttpClient("https://github.com", 443, "")
+    response = client.get("/null")
+    assert response.json == {}
+
+
+def test_http_response_not_ok():
+    client = get_http_client()
+    response = client.get("/not_found")
+    assert not response.is_status_ok()
