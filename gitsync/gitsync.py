@@ -1,5 +1,4 @@
 import argparse
-import sys
 from .remote import Remote, RemoteProvider
 from .repository import Repository
 from .git import Git
@@ -48,11 +47,3 @@ def synchronize_repository(repository: Repository, directory: str) -> None:
     git.pull()
     print("")
     return None
-
-
-if __name__ == "__main__":
-    try:
-        main()
-    except NotImplementedError:
-        sys.argv[1] = "-h"
-        main()

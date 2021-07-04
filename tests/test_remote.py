@@ -12,11 +12,6 @@ def get_user():
     return "edijon"
 
 
-def test_remote_init():
-    with pytest.raises(NotImplementedError):
-        Remote()
-
-
 def test_remote_factory():
     remote = get_remote()
     assert isinstance(remote, Github)
@@ -25,6 +20,12 @@ def test_remote_factory():
 def test_remote_factory_unknown_provider():
     with pytest.raises(NotImplementedError):
         Remote.remote(None, "", "https://api.github.com", 443)
+
+
+def test_remote_user_repositories():
+    remote = Remote()
+    with pytest.raises(NotImplementedError):
+        remote.get_user_repositories("")
 
 
 def test_init():

@@ -1,6 +1,5 @@
 import enum
 import requests
-from json.decoder import JSONDecodeError
 
 
 class HttpStatus(enum.Enum):
@@ -37,7 +36,7 @@ class HttpResponse(object):
     def json(self) -> object:
         try:
             decode = self.response.json()
-        except JSONDecodeError:
+        except Exception:
             decode = {}
         return decode
 

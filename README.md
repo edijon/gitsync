@@ -21,11 +21,11 @@
 * Command Line Interface 
 * Getting help
     ```bash
-    python3 gitsync.py --help
+    python3 -m gitsync --help
     ```
 * Exemple :
     ```bash
-    python3 gitsync.py edijon /tmp/ --provider=github 
+    python3 -m gitsync edijon /tmp/ --provider=github 
     ```
 
 ## Testing
