@@ -39,8 +39,7 @@ class HttpResponse(object):
             decode = self.response.json()
         except JSONDecodeError:
             decode = {}
-        finally:
-            return decode
+        return decode
 
     def is_status_ok(self) -> bool:
         if self.response.status_code == HttpStatus.OK.value:
