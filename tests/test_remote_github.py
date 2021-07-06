@@ -1,20 +1,16 @@
-from gitsync.remote import Remote, RemoteProvider, Github
+from gitsync.remote import Remote, RemoteProvider, RemoteScheme, Github
 from gitsync.httpwrapper import HttpClient
 from gitsync.repository import Repository
 import pytest
 
 
-def get_remote():
-    return Remote.remote(RemoteProvider.GITHUB, "", "https://api.github.com", 443)
-
-
-def get_user():
-    return "edijon"
-
-
 def test_remote_factory():
     remote = get_remote()
     assert isinstance(remote, Github)
+
+
+def get_remote():
+    return Remote.remote(RemoteProvider.GITHUB, "", "https://api.github.com", 443)
 
 
 def test_remote_factory_unknown_provider():
@@ -43,4 +39,8 @@ def test_get_user_repositories():
     assert len(repositories) > 0
     for repository in repositories:
         assert isinstance(repository, Repository)
-        assert "git://" not in repository.uri
+        assert RemoteScheme.GIT.value not in repository.uri
+
+
+def get_user():
+    return "edijon"

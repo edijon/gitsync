@@ -36,6 +36,8 @@ def get_arguments() -> object:
 def get_remote_provider(remote_provider: str) -> RemoteProvider:
     if remote_provider and remote_provider.lower() == "github":
         return RemoteProvider.GITHUB
+    elif remote_provider and remote_provider.lower() == "gitlab":
+        return RemoteProvider.GITLAB
     else:
         raise NotImplementedError
 
