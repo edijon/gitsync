@@ -1,20 +1,25 @@
+from abc import ABC, abstractmethod
 import os
 import subprocess
 
 
-class Git(object):
+class Git(ABC):
+    @abstractmethod
+    def clone(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def pull(self):
+        raise NotImplementedError
+
+
+class GitFactory(ABC):
     @staticmethod
-    def controller(url: str, name: str, path: str = "") -> object:
+    def create(url: str, name: str, path: str = "") -> Git:
         if os.name == "posix":
             return GitPosix(url, name, path=path)
         else:
             raise NotImplementedError
-
-    def clone(self):
-        raise NotImplementedError
-
-    def pull(self):
-        raise NotImplementedError
 
 
 class GitPosix(Git):

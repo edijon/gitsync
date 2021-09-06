@@ -1,6 +1,7 @@
 from .repository import Repository
 from .httpwrapper import HttpClient
 from enum import Enum, auto
+from abc import ABC, abstractmethod
 
 
 class RemoteProvider(Enum):
@@ -14,17 +15,20 @@ class RemoteScheme(Enum):
 
 
 class Remote(object):
+    @abstractmethod
+    def get_user_repositories(self, user: str) -> list:
+        raise NotImplementedError
+
+
+class RemoteFactory(ABC):
     @staticmethod
-    def remote(remote_type: RemoteProvider, access_token: str, base_url: str, port: int):
+    def create(remote_type: RemoteProvider, access_token: str, base_url: str, port: int):
         if remote_type == RemoteProvider.GITHUB:
             return Github(access_token, base_url, port)
         elif remote_type == RemoteProvider.GITLAB:
             return Gitlab(access_token, base_url, port)
         else:
             raise NotImplementedError
-
-    def get_user_repositories(self, user: str) -> list:
-        raise NotImplementedError
 
 
 class Github(Remote):

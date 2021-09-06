@@ -1,4 +1,4 @@
-from gitsync.remote import Remote, RemoteProvider, Gitlab
+from gitsync.remote import RemoteFactory, RemoteProvider, Gitlab
 from gitsync.httpwrapper import HttpClient
 from gitsync.repository import Repository
 import pytest
@@ -10,18 +10,12 @@ def test_remote_factory():
 
 
 def get_remote():
-    return Remote.remote(RemoteProvider.GITLAB, "", "https://gitlab.com", 443)
+    return RemoteFactory.create(RemoteProvider.GITLAB, "", "https://gitlab.com", 443)
 
 
 def test_remote_factory_unknown_provider():
     with pytest.raises(NotImplementedError):
-        Remote.remote(None,  "", "https://gitlab.com", 443)
-
-
-def test_remote_user_repositories():
-    remote = Remote()
-    with pytest.raises(NotImplementedError):
-        remote.get_user_repositories("")
+        RemoteFactory.create(None,  "", "https://gitlab.com", 443)
 
 
 def test_init():
