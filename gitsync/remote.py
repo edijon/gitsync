@@ -14,7 +14,7 @@ class RemoteScheme(Enum):
     HTTPS = "https://"
 
 
-class Remote(object):
+class Remote(ABC):
     @abstractmethod
     def get_user_repositories(self, user: str) -> list:
         raise NotImplementedError
@@ -22,7 +22,11 @@ class Remote(object):
 
 class RemoteFactory(ABC):
     @staticmethod
-    def create(remote_type: RemoteProvider, access_token: str, base_url: str, port: int):
+    def create(
+            remote_type: RemoteProvider,
+            access_token: str,
+            base_url: str,
+            port: int) -> Remote:
         if remote_type == RemoteProvider.GITHUB:
             return Github(access_token, base_url, port)
         elif remote_type == RemoteProvider.GITLAB:
