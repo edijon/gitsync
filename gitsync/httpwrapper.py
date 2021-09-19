@@ -1,3 +1,4 @@
+"""Add an abstraction between this application and requests library."""
 import enum
 import requests
 

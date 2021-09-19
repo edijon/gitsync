@@ -1,3 +1,4 @@
+"""Core module, contains CLI algorithm and runtime configuration."""
 import argparse
 from .remote import Remote, RemoteProvider
 from .repository import Repository
@@ -34,6 +35,7 @@ def get_arguments() -> object:
 
 
 def get_remote_provider(remote_provider: str) -> RemoteProvider:
+    """Remote providers are defined in remote module."""
     if remote_provider and remote_provider.lower() == "github":
         return RemoteProvider.GITHUB
     else:

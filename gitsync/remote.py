@@ -1,13 +1,18 @@
+"""Module for git remotes like Github, Gitlab."""
 from .repository import Repository
 from .httpwrapper import HttpClient
 from enum import Enum, auto
 
 
 class RemoteProvider(Enum):
+    """Define possible remote providers here."""
     GITHUB = auto()
 
 
 class Remote(object):
+    """Every remote provider should inherit from this class.
+    Clients should depend of remote abstraction not its implementations.
+    """
     @staticmethod
     def remote(remote_type: RemoteProvider, access_token: str, base_url: str, port: int):
         if remote_type == RemoteProvider.GITHUB:
