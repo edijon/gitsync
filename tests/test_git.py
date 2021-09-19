@@ -3,19 +3,19 @@ import pytest
 import os
 
 
-def test_git():
+def test_given_unknown_os_when_git_then_raise_error():
     with pytest.raises(NotImplementedError):
         os.name = "none"
-        get_git()
+        _get_git()
     os.name = "posix"
 
 
-def get_git():
+def _get_git():
     return GitFactory.create("https://github.com/edijon/gitsync.git", "gitsync", "/tmp")
 
 
-def test_posix_init():
-    git = get_git()
+def test_given_os_posix_when_git_instance_then_is_set():
+    git = _get_git()
     assert isinstance(git.url, str)
     assert isinstance(git.name, str)
     assert isinstance(git.path, str)
@@ -23,17 +23,17 @@ def test_posix_init():
     assert git.full_path == git.path + "/" + git.name
 
 
-def test_posix_git_factory():
-    git = get_git()
+def test_given_os_posix_when_git_instance_then_is_gitposix_and_git():
+    git = _get_git()
     assert isinstance(git, GitPosix)
     assert issubclass(git.__class__, Git)
 
 
-def test_posix_clone():
-    git = get_git()
+def test_given_git_instance_when_clone_then_run_successfully():
+    git = _get_git()
     git.clone()
 
 
-def test_posix_pull():
-    git = get_git()
+def test_given_git_instance_when_pull_then_run_successfully():
+    git = _get_git()
     git.pull()
