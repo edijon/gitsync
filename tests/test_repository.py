@@ -1,11 +1,7 @@
 from gitsync.repository import Repository
 
 
-def get_repository():
-    return Repository("name", "uri")
-
-
-def test_init():
-    repository = get_repository()
+def test_given_name_and_uri_when_init_repository_then_is_set():
+    repository = Repository("name", "uri")
     assert repository.name == "name"
     assert repository.uri == "uri"

@@ -18,7 +18,7 @@ def test_given_remoteprovider_unknown_when_factory_then_notimplementederror():
         RemoteFactory.create(None, "", "https://api.github.com", 443)
 
 
-def test_given_valid_remoteprovider_when_init_then_is_set():
+def test_given_github_remoteprovider_when_init_then_is_set():
     remote = _get_remote()
     assert isinstance(remote.access_token, str)
     assert isinstance(remote.base_url, str)
