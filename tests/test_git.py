@@ -1,4 +1,4 @@
-from gitsync.git import Git, GitPosix
+from gitsync.git import Git, GitFactory, GitPosix
 import pytest
 import os
 
@@ -11,19 +11,7 @@ def test_git():
 
 
 def get_git():
-    return Git.controller("https://github.com/edijon/gitsync.git", "gitsync", "/tmp")
-
-
-def test_clone():
-    with pytest.raises(NotImplementedError):
-        git = Git()
-        git.clone()
-
-
-def test_pull():
-    with pytest.raises(NotImplementedError):
-        git = Git()
-        git.pull()
+    return GitFactory.create("https://github.com/edijon/gitsync.git", "gitsync", "/tmp")
 
 
 def test_posix_init():

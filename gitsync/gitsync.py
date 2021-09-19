@@ -1,8 +1,8 @@
 """Core module, contains CLI algorithm and runtime configuration."""
 import argparse
-from .remote import Remote, RemoteProvider
+from .remote import RemoteFactory, RemoteProvider
 from .repository import Repository
-from .git import Git
+from .git import GitFactory
 
 
 def main() -> None:
@@ -15,7 +15,7 @@ def main() -> None:
     api_port = int(arguments.api_port)
 
     print("Getting remote...\n")
-    remote = Remote.remote(provider, token, api_url, api_port)
+    remote = RemoteFactory.create(provider, token, api_url, api_port)
     repositories = remote.get_user_repositories(user)
     print("Trying to synchronize repositories...\n")
     for repository in repositories:
@@ -38,13 +38,15 @@ def get_remote_provider(remote_provider: str) -> RemoteProvider:
     """Remote providers are defined in remote module."""
     if remote_provider and remote_provider.lower() == "github":
         return RemoteProvider.GITHUB
+    elif remote_provider and remote_provider.lower() == "gitlab":
+        return RemoteProvider.GITLAB
     else:
         raise NotImplementedError
 
 
 def synchronize_repository(repository: Repository, directory: str) -> None:
     print("Synchronize repository at URL : %s" % (repository.uri))
-    git = Git.controller(repository.uri, repository.name, path=directory)
+    git = GitFactory.create(repository.uri, repository.name, path=directory)
     git.clone()
     git.pull()
     print("")

@@ -1,20 +1,30 @@
+"""Client side module, calling system processes for git commands."""
+from abc import ABC, abstractmethod
 import os
 import subprocess
 
 
-class Git(object):
+class Git(ABC):
+    """Abstract class, parent of all git implementations.
+    Clients should depend of git abstraction, not its implementations.
+    """
+    @abstractmethod
+    def clone(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def pull(self):
+        raise NotImplementedError
+
+
+class GitFactory(ABC):
+    """GitFactory creates git implementation according to OS."""
     @staticmethod
-    def controller(url: str, name: str, path: str = "") -> object:
+    def create(url: str, name: str, path: str = "") -> Git:
         if os.name == "posix":
             return GitPosix(url, name, path=path)
         else:
             raise NotImplementedError
-
-    def clone(self):
-        raise NotImplementedError
-
-    def pull(self):
-        raise NotImplementedError
 
 
 class GitPosix(Git):
