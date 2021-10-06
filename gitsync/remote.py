@@ -11,6 +11,16 @@ class RemoteProvider(Enum):
     GITLAB = auto()
 
 
+class RemoteProviderFactory(object):
+    """Create RemoteProvider objects"""
+    @staticmethod
+    def create(remote_provider: str) -> RemoteProvider:
+        remotes = {
+            "github": RemoteProvider.GITHUB,
+            "gitlab": RemoteProvider.GITLAB}
+        return remotes[remote_provider.lower()]
+
+
 class RemoteScheme(Enum):
     GIT = "git://"
     HTTPS = "https://"

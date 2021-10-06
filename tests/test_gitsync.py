@@ -26,7 +26,7 @@ def test_given_not_enough_arguments_when_main_then_raise_systemexit():
         gitsync.main()
 
 
-def test_given_unknown_provider_when_main_then_raise_notimplementederror():
+def test_given_unknown_provider_when_main_then_raise_keyerror():
     sys.argv = [sys.argv[0], "edijon", "/tmp", "--provider=unknown"]
-    with pytest.raises(NotImplementedError):
+    with pytest.raises(KeyError):
         gitsync.main()
