@@ -1,6 +1,6 @@
 """Core module, contains CLI algorithm and runtime configuration."""
 import argparse
-from .remote import RemoteFactory, RemoteProvider, RemoteProviderFactory
+from .remote import RemoteFactory, RemoteProviderFactory
 from .repository import Repository
 from .git import GitFactory
 
@@ -23,7 +23,7 @@ def main() -> None:
     return None
 
 
-def get_arguments() -> object:
+def get_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description='Synchronize user remote git repositories locally.')
     parser.add_argument("user", type=str, help="remote user namespace")
     parser.add_argument("directory", type=str, help="base directory where syncing repositories")
